@@ -9,7 +9,7 @@ require('dotenv').config();
 const requireAuth = require('./middlewares/requireAuth');
 const app = express();
 
-const mongoUri = 'mongodb+srv://rurs:rurs@artcluster.iyomksk.mongodb.net/Track?retryWrites=true&w=majority';
+const mongoUri = process.env.MONGO_URI;
 
 const connect = () => {
     mongoose.set('strictQuery', false);
