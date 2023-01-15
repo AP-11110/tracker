@@ -3,15 +3,18 @@ import AuthForm from '../components/AuthForm';
 import NavLink from '../components/NavLink';
 import { Context as AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
+import { NavigationEvents } from 'react-navigation';
 
 const SigninScreen = () => {
-    const { state, signin } = useContext(AuthContext);
+    const { state, signin, clearErrorMessage } = useContext(AuthContext);
 
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={styles.container}
         >
+            {/* there are other events such as onDidFocus, onWillBlur, onDidBlur */}
+            <NavigationEvents onWillFocus={clearErrorMessage} />
             <AuthForm 
                 headerText="Sign In to Your Account"
                 errorMessage={state.errorMessage}
